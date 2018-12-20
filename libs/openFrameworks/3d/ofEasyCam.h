@@ -89,6 +89,8 @@ public:
     /// \param value Scales the xyz axes translation factor by these values.
     void setTranslationSensitivity(float x, float y, float z);
 	void setTranslationSensitivity(const glm::vec3& sensitivity);
+	void setScrollSensitivity(float sensitivity);
+
     /// \brief Set the key used to switch between camera rotation and translation.
     ///
     /// Translation will only happen when the translation key is pressed.

@@ -211,6 +211,11 @@ void ofEasyCam::setTranslationSensitivity(float x, float y, float z){
 }
 
 //----------------------------------------
+void ofEasyCam::setScrollSensitivity(float sensitivity) {
+	sensitivityScroll = sensitivity;
+}
+
+//----------------------------------------
 void ofEasyCam::enableMouseMiddleButton(){
 	bEnableMouseMiddleButton = true;
 }
