@@ -213,11 +213,17 @@ ofHttpResponse ofURLFileLoaderImpl::handleRequest(const ofHttpRequest & request)
         curl_easy_setopt(curl.get(), CURLOPT_READFUNCTION, nullptr);
         curl_easy_setopt(curl.get(), CURLOPT_READDATA, nullptr);
 	}
-	if(request.method == ofHttpRequest::GET){
+	if (request.method == ofHttpRequest::GET) {
 		curl_easy_setopt(curl.get(), CURLOPT_HTTPGET, 1);
 		curl_easy_setopt(curl.get(), CURLOPT_POST, 0);
-	}else{
-		curl_easy_setopt(curl.get(), CURLOPT_POST, 1);
+	}
+	else if (request.method == ofHttpRequest::PUT) {
+		curl_easy_setopt(curl.get(), CURLOPT_POST, 0L);    // disable POST
+		curl_easy_setopt(curl.get(), CURLOPT_UPLOAD, 1L);  // enable PUT
+	}
+	else if (request.method == ofHttpRequest::POST) {
+		curl_easy_setopt(curl.get(), CURLOPT_UPLOAD, 0L);  // disable PUT
+		curl_easy_setopt(curl.get(), CURLOPT_POST, 1L);    // enable POST
 		curl_easy_setopt(curl.get(), CURLOPT_HTTPGET, 0);
 	}
 
